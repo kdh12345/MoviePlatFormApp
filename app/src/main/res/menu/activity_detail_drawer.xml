@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_movie_home"
+            android:icon="@drawable/ic_list"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:title="첫 화면" />
+        <item
+            android:id="@+id/nav_movie_api"
+            android:icon="@drawable/ic_review"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:title="영화 API" />
+        <item
+            android:id="@+id/nav_book"
+            android:icon="@drawable/ic_book"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:title="예매하기" />
+        <item
+            android:title="설정"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        </item>
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:title="사용자 설정" />
+    </group>
+
+
+
+</menu>

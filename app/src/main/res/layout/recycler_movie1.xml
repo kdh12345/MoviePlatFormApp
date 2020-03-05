@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background">
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/image1"></ImageView>
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="1. 군도"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp">
+
+    </TextView>
+
+    <View
+        android:layout_width="70dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="#D8D8D8">
+
+    </View>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="예매율 61.6% | 15세관람가 | D-1"
+        android:textColor="#FFFFFF"
+        android:textSize="15dp"></TextView>
+
+    <Button
+        android:id="@+id/detail_btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round"
+        android:backgroundTint="#FE9A2E"
+        android:text="상세보기"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"></Button>
+</LinearLayout>

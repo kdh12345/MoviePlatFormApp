@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MovieProject2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="movie_thumb_content">예매율 %.2f | %d세 관람가</string>
+    <string name="movie_detail_content">%s 개봉\n%s/%d분</string>
+    <string name="reservation_string">예매율 %d위\n %.2f%%</string>
+    <string name="audience_rate">%.1f점</string>
+    <string name="accumulated_audience">누적관객수\n%,d명</string>
+    <string name="director_actor_string">감독 %s\n배우 %s</string>
+</resources>
