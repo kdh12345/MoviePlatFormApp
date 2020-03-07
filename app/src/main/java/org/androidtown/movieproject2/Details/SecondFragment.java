@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -53,6 +56,12 @@ public class SecondFragment extends Fragment {
     private SQLiteDatabase database;
     int id;
     int user_id;
+    //8장
+    int order=1;
+    Animation translateUp;
+    Animation translateDown;
+    LinearLayout RootOrderLayout;
+    boolean isPageOpen=false;
     SecondFragment() {
 
     }
@@ -80,13 +89,14 @@ public class SecondFragment extends Fragment {
         bundle = this.getArguments();
         if (bundle != null) {
             bundle = getArguments();
-            movieArrayList = bundle.getParcelableArrayList("from_movie_data");
+            //movieArrayList = bundle.getParcelableArrayList("from_movie_data");
+            Movie movie=bundle.getParcelable("from_movie_data");
             // Toast.makeText(context, movieArrayList.get(1).id+"", Toast.LENGTH_LONG).show();
-            Glide.with(context).load(movieArrayList.get(1).image).into(imageView);
-            id=movieArrayList.get(1).id;
+            Glide.with(context).load(movie.getImage()).into(imageView);
+            id=movie.getId();
             //Toast.makeText(context, movieArrayList.get(1).id+"", Toast.LENGTH_SHORT).show();
-            title.setText(movieArrayList.get(1).id + "." + " " + movieArrayList.get(1).title);
-            information.setText("예매율 " + movieArrayList.get(1).reservation_rate + " %" + " | " + movieArrayList.get(1).grade + "세 관람가");
+            title.setText(movie.getId() + "." + " " + movie.getTitle());
+            information.setText("예매율 " + movie.getReservation_rate() + " %" + " | " + movie.getGrade() + "세 관람가");
         }
         int Status = NetworkStatus.getConnectivityStatus(getContext());
         if (Status == NetworkStatus.MOBILE || Status == NetworkStatus.WIFI) {
@@ -162,4 +172,5 @@ public class SecondFragment extends Fragment {
             }
         });
     }
+
 }

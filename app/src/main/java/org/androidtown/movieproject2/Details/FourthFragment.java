@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +52,12 @@ public class FourthFragment extends Fragment {
     TextView information;
     Context context;
     ArrayList<Movie> movieArrayList;
-
+    //8장
+    int order=1;
+    Animation translateUp;
+    Animation translateDown;
+    LinearLayout RootOrderLayout;
+    boolean isPageOpen=false;
     FourthFragment() {
 
     }
@@ -79,13 +87,14 @@ public class FourthFragment extends Fragment {
         bundle = this.getArguments();
         if (bundle != null) {
             bundle = getArguments();
-            movieArrayList = bundle.getParcelableArrayList("from_movie_data");
+           // movieArrayList = bundle.getParcelableArrayList("from_movie_data");
             //Toast.makeText(context, movieArrayList.get(3).id+"", Toast.LENGTH_LONG).show();
-            Glide.with(context).load(movieArrayList.get(3).image).into(imageView);
+            Movie movie=bundle.getParcelable("from_movie_data");
+            Glide.with(context).load(movie.getImage()).into(imageView);
             //  Toast.makeText(context, movieArrayList.get(3).id+"", Toast.LENGTH_SHORT).show();
-            id = movieArrayList.get(3).id;
-            title.setText(movieArrayList.get(3).id + "." + " " + movieArrayList.get(3).title);
-            information.setText("예매율 " + movieArrayList.get(3).reservation_rate + " %" + " | " + movieArrayList.get(3).grade + "세 관람가");
+            id = movie.getId();
+            title.setText(id + "." + " " + movie.getTitle());
+            information.setText("예매율 " + movie.getReservation_rate() + " %" + " | " + movie.getGrade() + "세 관람가");
         }
         //final FragmentTransaction fragmentTransaction=(getActivity()).getSupportFragmentManager().beginTransaction();
 
@@ -98,11 +107,12 @@ public class FourthFragment extends Fragment {
         } else {
             processJsonFromDB();
         }
+
         return view;
     }
 
     public void sendRequest() {
-        String url = "http://boostcourse-appapi.connect.or.kr:10000/movie/readMovie?id=4";
+        String url = "http://boostcourse-appapi.connect.or.kr:10000/movie/readMovie?id="+id;
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 url,
@@ -166,4 +176,5 @@ public class FourthFragment extends Fragment {
             }
         });
     }
+
 }

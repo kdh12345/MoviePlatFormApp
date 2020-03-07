@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +70,12 @@ public class FifthFragment extends Fragment {
     Bundle new_bundle = new Bundle();//디테일로 보내는 번들
     int id;
     int user_id;
+    //8장
+    int order=1;
+    Animation translateUp;
+    Animation translateDown;
+    LinearLayout RootOrderLayout;
+    boolean isPageOpen=false;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -79,13 +88,11 @@ public class FifthFragment extends Fragment {
         bundle = this.getArguments();
         if (bundle != null) {
             bundle = getArguments();
-            movieArrayList = bundle.getParcelableArrayList("from_movie_data");
-            //Toast.makeText(context, movieArrayList.get(4).id+"", Toast.LENGTH_LONG).show();
-            Glide.with(context).load(movieArrayList.get(4).image).into(imageView);
-            id=movieArrayList.get(4).id;
-            // Toast.makeText(context, movieArrayList.get(4).id+"", Toast.LENGTH_SHORT).show();
-            title.setText(movieArrayList.get(4).id + "." + " " + movieArrayList.get(4).title);
-            information.setText("예매율 " + movieArrayList.get(4).reservation_rate + " %" + " | " + movieArrayList.get(4).grade + "세 관람가");
+            Movie movie=bundle.getParcelable("from_movie_data");
+            Glide.with(context).load(movie.getImage()).into(imageView);
+            id = movie.getId();
+            title.setText(movie.getId() + "." + " " + movie.getTitle());
+            information.setText("예매율 " + movie.getReservation_rate() + " %" + " | " + movie.getGrade() + "세 관람가");
         }
         //  final FragmentTransaction fragmentTransaction=(getActivity()).getSupportFragmentManager().beginTransaction();
         int Status = NetworkStatus.getConnectivityStatus(getContext());
@@ -97,11 +104,12 @@ public class FifthFragment extends Fragment {
         } else {
             processJsonFromDB();
         }
+
         return view;
     }
 
     public void sendRequest() {
-        String url = "http://boostcourse-appapi.connect.or.kr:10000/movie/readMovie?id=5";
+        String url = "http://boostcourse-appapi.connect.or.kr:10000/movie/readMovie?id="+id;
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 url,
@@ -156,7 +164,7 @@ public class FifthFragment extends Fragment {
     }
 
     public void processJsonFromDB() {
-        new_bundle.putInt("Idx",movieArrayList.get(4).id);
+        new_bundle.putInt("Idx",id);
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,4 +173,5 @@ public class FifthFragment extends Fragment {
         });
 
     }
+
 }

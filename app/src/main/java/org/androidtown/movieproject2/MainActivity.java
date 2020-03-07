@@ -2,8 +2,11 @@ package org.androidtown.movieproject2;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     int flag = 0;
     ArrayList<Movie> arrayList;
+    //8장
+    public ImageView OrderImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // FirstFragment firstFragment = new FirstFragment();
         //firstFragment=findViewById(R.id.fr1);
         movieListFragment = new MovieListFragment();
+        OrderImage=findViewById(R.id.order_image);
         init();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.main_frame, movieListFragment).commit();
@@ -57,34 +63,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //getSupportFragmentManager().beginTransaction().show(firstFragment).commit();
 
         ///////////////////////////////////////////
-        /*recyclerView=findViewById(R.id.content_recycle);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        RecyclerAdapter recyclerAdapter=new RecyclerAdapter();
-        recyclerView.setAdapter(recyclerAdapter);*/
-        ///////////////////////////////////////////
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("영화 목록");
-        /*ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(false); // 기존 title 지우기
-        actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼 만들기
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_hamburger_menu); //뒤로가기 버튼 이미지 지정*/
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        //////
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("영화 목록");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger_menu);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        //////
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        /////////
-
         /////////////////////////////
     }
 
@@ -110,33 +100,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
-        //  mDrawerLayout.closeDrawers();
+
 
         return true;
     }
+
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
-
-    /* @Override
-     public boolean onOptionsItemSelected(MenuItem item) {
-         switch (item.getItemId()) {
-             case android.R.id.home: { // 왼쪽 상단 버튼 눌렀을 때
-                 mDrawerLayout.openDrawer(GravityCompat.START);
-                 return true;
-             }
-
-         }
-         return super.onOptionsItemSelected(item);
-     }*/
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
-        return true;
-    }*/
     public void onFragmentSelected(int pos, Bundle bundle) {
         Fragment cur = null;
         if (pos == 0) {

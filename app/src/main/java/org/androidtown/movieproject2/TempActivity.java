@@ -39,7 +39,7 @@ public class TempActivity extends AppCompatActivity {
     TextView contents;
     Button button;
 
-
+    Handler handler=new Handler();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +55,7 @@ public class TempActivity extends AppCompatActivity {
             if (AppHelper.requestQueue == null)
                 AppHelper.requestQueue = Volley.newRequestQueue(getApplicationContext());
             Toast.makeText(this, "요청 성공!!!", Toast.LENGTH_SHORT).show();
+            button.setVisibility(View.INVISIBLE);
             sendRequest();
         } else {
             Toast.makeText(this, "wifi 혹은 모바일 네트워크를 키고 시작하세요", Toast.LENGTH_SHORT).show();
@@ -128,8 +129,14 @@ image: "http://movie.phinf.naver.net/20171107_251/1510033896133nWqxG_JPEG/movie_
             Bundle bundle = new Bundle();
             arrayList = movieListResult.result;
             intent.putParcelableArrayListExtra("movie_data", arrayList);
-            finish();
-            startActivity(intent);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    finish();
+                    startActivity(intent);
+                }
+            },1000);
+
             //   bundle.putParcelableArrayList("movie_data_list",arrayList);
             //intent.putExtra("to_main_bundle",bundle);
             //  listFragment.setArguments(bundle);

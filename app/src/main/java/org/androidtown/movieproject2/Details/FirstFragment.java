@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +53,7 @@ public class FirstFragment extends Fragment {
     Context context;
 
     int user_id;
+
     MoviePagerAdpterOffLine pagerAdpterOffLine;
     FirstFragment() {
 
@@ -81,13 +85,14 @@ public class FirstFragment extends Fragment {
         bundle = this.getArguments();
         if (bundle != null) {
             bundle = getArguments();
-            movieArrayList = bundle.getParcelableArrayList("from_movie_data");
-            Glide.with(context).load(movieArrayList.get(0).image).into(imageView);
-            id = movieArrayList.get(0).id;
-            title.setText(movieArrayList.get(0).id + "." + " " + movieArrayList.get(0).title);
-            information.setText("예매율 " + movieArrayList.get(0).reservation_rate + " %" + " | " + movieArrayList.get(0).grade + "세 관람가");
+            //movieArrayList = bundle.getParcelableArrayList("from_movie_data");
+            Movie movie=bundle.getParcelable("from_movie_data");
+            Glide.with(context).load(movie.getImage()).into(imageView);
+            id = movie.getId();
+            title.setText(movie.getId() + "." + " " + movie.getTitle());
+            information.setText("예매율 " + movie.getReservation_rate() + " %" + " | " + movie.getGrade() + "세 관람가");
         }
-        int Status = NetworkStatus.getConnectivityStatus(getContext());
+        final int Status = NetworkStatus.getConnectivityStatus(getContext());
         if (Status == NetworkStatus.MOBILE || Status == NetworkStatus.WIFI) {
             if (AppHelper.requestQueue == null) {
                 AppHelper.requestQueue = Volley.newRequestQueue(getContext());
@@ -96,13 +101,12 @@ public class FirstFragment extends Fragment {
         } else {
             processJsonFromDB();
         }
-        //  final FragmentTransaction fragmentTransaction = (getActivity()).getSupportFragmentManager().beginTransaction();
 
         return view;
     }
 
     public void sendRequest() {
-        String url = "http://boostcourse-appapi.connect.or.kr:10000/movie/readMovie?id=1";
+        String url = "http://boostcourse-appapi.connect.or.kr:10000/movie/readMovie?id="+id;
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 url,
@@ -128,7 +132,9 @@ public class FirstFragment extends Fragment {
         request.setShouldCache(false);
         AppHelper.requestQueue.add(request);
 
+
     }
+
 
 
 
@@ -160,7 +166,7 @@ public class FirstFragment extends Fragment {
 
     public void processJsonFromDB() {
 // DB 이용
-       new_bundle.putInt("Idx",movieArrayList.get(0).id);
+       new_bundle.putInt("Idx",id);
        detail.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
