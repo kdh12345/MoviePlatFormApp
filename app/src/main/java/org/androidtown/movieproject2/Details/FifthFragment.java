@@ -148,7 +148,7 @@ public class FifthFragment extends Fragment {
             new_bundle.putInt("MvID", 5);
             new_bundle.putInt("movie_grade", GiveMovieArray.get(0).grade);
             new_bundle.putString("movie_title", GiveMovieArray.get(0).title);
-
+            new_bundle.putParcelable("movie",GiveMovieArray.get(0));
             Intent intent = new Intent(context, AllListActivity.class);
             intent.putParcelableArrayListExtra("all_data", GiveMovieArray);
             intent.putExtra("MovieId", 1);

@@ -94,7 +94,7 @@ public class AllListActivity extends AppCompatActivity {
         if (processedIntent != null) {
             if (processedIntent.getParcelableExtra("movie") != null) {
                 movie = processedIntent.getParcelableExtra("movie");
-                ratingBar.setRating(movie.getAudience_rating());
+                ratingBar.setRating(movie.getAudience_rating()/2);
                 participation.setText(String.format("%.1f점 (%,d명 참여)",movie.getAudience_rating(),movie.getAudience()));
             }
         }

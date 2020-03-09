@@ -589,8 +589,10 @@ public class DetailFragment extends Fragment implements onBackPressedListener {
                     // ParcelableArray 로 intent에 담아 전달
                     int grade = bundle.getInt("movie_grade", 0);
                     String title = bundle.getString("movie_title");
+                    Movie movie1=bundle.getParcelable("movie");
                     intent.putExtra("movie_grade", grade);
                     intent.putExtra("movie_title", title);
+                    intent.putExtra("movie",movie1);
                     ArrayList<EvaluationInfo> arrayList = new ArrayList<>();
                     for (int i = 0; i < movieArrayList.size(); i++) {
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
