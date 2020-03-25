@@ -24,9 +24,4 @@
                 android:icon="@drawable/ic_settings"
                 android:title="사용자 설정" />
     </group>
-
-
-
-
-
 </menu>

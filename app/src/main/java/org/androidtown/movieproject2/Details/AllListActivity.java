@@ -97,6 +97,19 @@ public class AllListActivity extends AppCompatActivity {
                 ratingBar.setRating(movie.getAudience_rating()/2);
                 participation.setText(String.format("%.1f점 (%,d명 참여)",movie.getAudience_rating(),movie.getAudience()));
             }
+            if(processedIntent.getParcelableExtra("movies")!=null){
+                Movie movie1=processedIntent.getParcelableExtra("movies");
+                String Title=movie1.getTitle();
+                mv_title.setText(Title);
+                int Grades=movie1.getGrade();
+                if (Grades == 12) {
+                    grades.setImageResource(R.drawable.ic_12);
+                } else if (Grades == 15) {
+                    grades.setImageResource(R.drawable.ic_15);
+                } else if (Grades == 19) {
+                    grades.setImageResource(R.drawable.ic_19);
+                }
+            }
         }
         int NetStatus = org.androidtown.movieproject2.NetworkCheck.NetworkStatus.getConnectivityStatus(this);
         if (NetStatus == NetworkStatus.MOBILE || NetStatus == NetworkStatus.WIFI) {
@@ -188,6 +201,7 @@ public class AllListActivity extends AppCompatActivity {
             }
             adapter.setItem(evaluationInfos);
             mRecyclerView.setAdapter(adapter);
+
             //db 업데이트!!!
             EvaListAdapter reviewAdapter = new EvaListAdapter();
             try {

@@ -168,7 +168,7 @@ public class FourthFragment extends Fragment {
     }
 
     public void processJsonFromDB() {
-        new_bundle.putInt("Idx",movieArrayList.get(3).id);
+        new_bundle.putInt("Idx",id);
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

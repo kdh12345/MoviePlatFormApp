@@ -1,10 +1,8 @@
 package org.androidtown.movieproject2;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -24,9 +21,6 @@ import com.google.gson.Gson;
 
 import org.androidtown.movieproject2.Details.MovieListFragment;
 import org.androidtown.movieproject2.NetworkCheck.NetworkStatus;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -144,3 +138,4 @@ image: "http://movie.phinf.naver.net/20171107_251/1510033896133nWqxG_JPEG/movie_
 
     }
 }
+

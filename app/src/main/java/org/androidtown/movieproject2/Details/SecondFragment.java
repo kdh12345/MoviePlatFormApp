@@ -165,7 +165,7 @@ public class SecondFragment extends Fragment {
     }//processResponse
 
     public void processJsonFromDB() {
-        new_bundle.putInt("Idx",movieArrayList.get(1).id);
+        new_bundle.putInt("Idx",id);
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

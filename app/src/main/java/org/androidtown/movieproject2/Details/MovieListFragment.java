@@ -263,7 +263,7 @@ public class MovieListFragment extends Fragment {
                     Movie movie=GiveMovieArray.get(i);
                     bundle.putParcelable("from_movie_data",movie);
                     thirdFragment.setArguments(bundle);
-                   // bundle.putParcelableArrayList("from_movie_data", GiveMovieArray);
+                    // bundle.putParcelableArrayList("from_movie_data", GiveMovieArray);
 
                 }
                 else if(GiveMovieArray.get(i).id==4){
@@ -272,7 +272,7 @@ public class MovieListFragment extends Fragment {
                     Movie movie=GiveMovieArray.get(i);
                     bundle.putParcelable("from_movie_data",movie);
                     fourthFragment.setArguments(bundle);
-                   // bundle.putParcelableArrayList("from_movie_data", GiveMovieArray);
+                    // bundle.putParcelableArrayList("from_movie_data", GiveMovieArray);
 
                 }
                 else if(GiveMovieArray.get(i).id==5){
