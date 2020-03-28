@@ -91,17 +91,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         //FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        switch (menuItem.getItemId()) {
-            case R.id.nav_movie_list: {
-                Toast.makeText(context, "클릭!!!", Toast.LENGTH_SHORT).show();
-                onFragmentSelected(1, null);
-            }
+        int id=menuItem.getItemId();
+        if(id==R.id.nav_movie_list){
+            Toast.makeText(context, "클릭!", Toast.LENGTH_SHORT).show();
+            onFragmentSelected(1,null);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-
-
-
         return true;
     }
 
