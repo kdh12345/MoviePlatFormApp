@@ -15,6 +15,7 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".Details.AllListActivity"></activity>
         <activity android:name=".Details.WriteActivity"></activity>
+        <activity android:name=".Details.DetailViews.GalleryActivity"></activity>
         <activity android:name=".TempActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
